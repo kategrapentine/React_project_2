@@ -1,4 +1,16 @@
 import React from "react";
+import Reviewlist from "./review-list";
+
+// let newReview = [
+//     {
+//         rating: 1,
+//         content: "This was a very bad movie"
+//     },
+//     {
+//         rating: 5,
+//         content: "This is my new favorite film!!!"
+//     }
+// ];
 
 export default class ReviewForm extends React.Component {
     constructor(props) {
@@ -6,7 +18,7 @@ export default class ReviewForm extends React.Component {
         this.state = {
             content: "",
             rating: 1,
-            newReview: {}
+            newReview: []
         };
         this.handleChangeSelect = this.handleChangeSelect.bind(this);
         this.handleChangeInput = this.handleChangeInput.bind(this);
@@ -24,13 +36,14 @@ export default class ReviewForm extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
         console.log(`${this.state.content} ${this.state.rating}`);
-        let srating = this.state.rating;
+        let srating = Number(this.state.rating);
         let scontent = this.state.content;
-        this.setState({newReview: {
-            rating: srating,
-            content: scontent
-        }});
-        console.log(this.state.reviews);
+        let newObject = {rating: srating, content: scontent};
+        console.log(newObject);
+        let joined = this.state.newReview.concat(newObject);
+        // console.log(joined);
+        this.setState({ newReview: joined });
+        // console.log(this.state.newReview);
     }
     
 
@@ -40,7 +53,7 @@ export default class ReviewForm extends React.Component {
         return (
             <div className="card bg-dark text-white">
                 <div className="card-header bg-danger text-white">
-                    Write a Review
+                    Reviews
                 </div>
                 <div className="card-body">
                     <form onSubmit={this.handleSubmit}>
@@ -72,6 +85,9 @@ export default class ReviewForm extends React.Component {
                         </div> */}
                             <button type="submit" value="Submit" className="btn btn-danger" id="submit-review" >Submit Your Review</button>
                     </form>
+                </div>
+                <div className="card-footer">
+                    <Reviewlist {...{reviews: this.state.newReview}} />
                 </div>
             </div>
         );

@@ -19,7 +19,7 @@ export default class Stars extends React.Component {
         } else if (this.state.value == 5) {
             return (<h4>★★★★★</h4>);
         } else {
-            return (<h4>Error</h4>)
+            return (<h4>Not Yet Rated</h4>)
         }
         
         
