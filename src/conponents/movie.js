@@ -1,7 +1,7 @@
 import React from 'react';
 // import ReviewList from './review-list';
 import ReviewForm from './review-form';
-import Stars from './stars';
+// import Stars from './stars';
 
 export default class Movie extends React.Component {
     constructor(props) {

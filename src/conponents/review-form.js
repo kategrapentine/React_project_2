@@ -48,7 +48,6 @@ export default class ReviewForm extends React.Component {
         let srating = Number(this.state.rating);
         let scontent = this.state.content;
         let newObject = {rating: srating, content: scontent};
-        
         console.log(newObject);
         let updatedArray = [...this.state.newReview, newObject]
         this.setState({ newReview: updatedArray });
