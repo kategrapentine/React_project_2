@@ -8,15 +8,15 @@ export default class Stars extends React.Component {
         }
     }
     render() {
-        if(this.state.value == 1) {
+        if(this.state.value === 1) {
             return (<h4>★☆☆☆☆</h4>);
-        } else if (this.state.value == 2) {
+        } else if (this.state.value === 2) {
             return (<h4>★★☆☆☆</h4>);
-        } else if (this.state.value == 3) {
+        } else if (this.state.value === 3) {
             return (<h4>★★★☆☆</h4>);
-        } else if (this.state.value == 4) {
+        } else if (this.state.value === 4) {
             return (<h4>★★★★☆</h4>);
-        } else if (this.state.value == 5) {
+        } else if (this.state.value === 5) {
             return (<h4>★★★★★</h4>);
         } else {
             return (<h4>Not Yet Rated</h4>)
