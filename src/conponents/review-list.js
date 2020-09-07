@@ -25,8 +25,7 @@ export default class ReviewForm extends React.Component {
         return (
             <div className="card bg-dark text-white">
                 <div className="card-header bg-danger text-white">
-                    <span><Stars value={Math.floor(avg)} /></span>
-                    Total Rating:
+                    Reviews
                 </div>
                 <div className="card-body">
                     <p>Here's what the critics are saying:</p>
