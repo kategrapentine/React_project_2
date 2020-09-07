@@ -8,11 +8,9 @@ export default class ReviewForm extends React.Component {
         this.state = {
             reviews: props.reviews
         };
-        console.log(this.state.reviews);
     }
 
     render() {
-        console.log(this.props.newReview);
         let ratingsNum = 0;
         for (let x = 0; x < this.state.reviews.length; x++) {
             const element = this.state.reviews[x];

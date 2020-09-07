@@ -1,47 +1,53 @@
 import React from 'react';
-// import ReviewList from './review-list';
+import ReviewList from './review-list';
 import ReviewForm from './review-form';
-// import Stars from './stars';
+import Stars from './stars';
 
 export default class Movie extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            movie: "",
+            rating: 0,
+            content: "",
+            reviewArray: []
         };
+        this.doThis = this.doThis.bind(this);
     }
 
-
+    doThis() {
+        this.setState({
+            count : this.state.count
+        });
+        console.log('count: ', this.state.count);
+    }
 
     render() {
-        // let reviews = [
-        //     {
-        //         rating: 1,
-        //         content: "This was a very bad movie"
-        //     },
-        //     {
-        //         rating: 5,
-        //         content: "This is my new favorite film!!!"
-        //     }
-        // ];
+        let reviews = [
+            {
+                rating: 1,
+                content: "This was a very bad movie"
+            },
+            {
+                rating: 5,
+                content: "This is my new favorite film!!!"
+            }
+        ];
         
-        // let ratingsNum = 0;
-        // for (let x = 0; x < reviews.length; x++) {
-        //     const element = reviews[x];
-        //     ratingsNum += element.rating;
-        // }
-        // let avg = ratingsNum/reviews.length;
+        let ratingsNum = 0;
+        for (let x = 0; x < reviews.length; x++) {
+            const element = reviews[x];
+            ratingsNum += element.rating;
+        }
+        let avg = ratingsNum/reviews.length;
 
-        // let avg = ratingsArray => ratingsArray.reduce((a,b) => a + b, 0) / ratingsArray.length;
-        // console.log(avg);
-        // let avgRounded = Math.ceil(avg);
+
         return (
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-md-4">
                         <div className="card bg-dark text-white mb-5">
                             <div className="card-header bg-danger">
-                                {/* <span><Stars value={Math.floor(avg)} /></span> */}
+                                <span><Stars value={Math.floor(avg)} /></span>
                                 <h5 className="card-title">{this.props.title}</h5>
                                   
                             </div>
@@ -52,10 +58,10 @@ export default class Movie extends React.Component {
                         </div>
                     </div>
                     <div className="col-md-8">
-                        <ReviewForm  movie={this.props.title} />
+                        <ReviewForm onHandleSubmit = { this.doThis } />
                         <br></br>
-                        {/* <ReviewList {...{reviews: reviews}} />
-                        <br></br> */}
+                        <ReviewList {...{reviews: reviews}} />
+                        <br></br>
                     </div>
                 </div>
             </div>

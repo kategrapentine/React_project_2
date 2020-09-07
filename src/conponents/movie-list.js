@@ -4,11 +4,11 @@ import Movie from './movie';
 export default class MovieList extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            poster: '',
-            title: '',
-            summary: '',
-        };
+        // this.state = {
+        //     poster: '',
+        //     title: '',
+        //     summary: '',
+        // };
     }
 
     render() {

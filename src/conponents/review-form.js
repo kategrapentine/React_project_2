@@ -31,7 +31,8 @@ export default class ReviewForm extends React.Component {
         };
         this.handleChangeSelect = this.handleChangeSelect.bind(this);
         this.handleChangeInput = this.handleChangeInput.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+        // this.handleSubmit = this.handleSubmit.bind(this);
+        // this.onHandleSubmit = this.onHandleSubmit(this);
     }
 
     handleChangeSelect(event) {
@@ -42,18 +43,23 @@ export default class ReviewForm extends React.Component {
         this.setState({content: event.target.value});
     }
     
-    handleSubmit(event) {
-        event.preventDefault();
-        console.log(`${this.state.content} ${this.state.rating}`);
-        let srating = Number(this.state.rating);
-        let scontent = this.state.content;
-        let newObject = {rating: srating, content: scontent};
-        console.log(newObject);
-        let updatedArray = [...this.state.newReview, newObject]
-        this.setState({ newReview: updatedArray });
-        console.log(this.state.newReview);
-    }
+    // handleSubmit(event) {
+    //     event.preventDefault();
+    //     console.log(`${this.state.content} ${this.state.rating}`);
+        // let srating = Number(this.state.rating);
+        // let scontent = this.state.content;
+    //     let newObject = {rating: srating, content: scontent};
+    //     console.log(newObject);
+    //     let updatedArray = [...this.state.newReview, newObject]
+    //     this.setState({ newReview: updatedArray });
+    //     console.log(this.state.newReview);
+    // }
     
+    // onHandleSubmit() {
+    //     let srating = Number(this.state.rating);
+    //     let scontent = this.state.content;
+    //     this.props.action({ rating: srating, content: scontent});
+    // }
 
     render() {
         
@@ -61,10 +67,10 @@ export default class ReviewForm extends React.Component {
         return (
             <div className="card bg-dark text-white">
                 <div className="card-header bg-danger text-white">
-                    Reviews
+                    Write a Review
                 </div>
                 <div className="card-body">
-                    <form onSubmit={this.handleSubmit}>
+                    <form onSubmit={this.props.onHandleSubmit}>
                         <input name="content" type="text" placeholder="What did you think of this film?" className="form-control" onChange={this.handleChangeInput}></input>
                         <h5>Rating ★:</h5>
                         <select defaultValue="1" name="rating" className="form-control" onChange={this.handleChangeSelect}>
@@ -94,9 +100,9 @@ export default class ReviewForm extends React.Component {
                             <button type="submit" value="Submit" className="btn btn-danger" id="submit-review" >Submit Your Review</button>
                     </form>
                 </div>
-                <div className="container-fluid">
+                {/* <div className="container-fluid">
                     <Reviewlist {...{reviews: this.state.newReview}} />
-                </div>
+                </div> */}
             </div>
         );
     }
