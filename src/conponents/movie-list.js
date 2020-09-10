@@ -2,15 +2,6 @@ import React from 'react';
 import Movie from './movie';
 
 export default class MovieList extends React.Component {
-    constructor(props) {
-        super(props);
-        // this.state = {
-        //     poster: '',
-        //     title: '',
-        //     summary: '',
-        // };
-    }
-
     render() {
         return (
             <div className="container-fluid bg-secondary">

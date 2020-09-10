@@ -18,29 +18,32 @@ export default class ReviewForm extends React.Component {
         this.state = {
             content: "",
             rating: 1,
-            newReview: [
-                {
-                    rating: 1,
-                    content: "This was a very bad movie"
-                },
-                {
-                    rating: 5,
-                    content: "This is my new favorite film!!!"
-                }
-            ]
+            // newReview: [
+            //     {
+            //         rating: 1,
+            //         content: "This was a very bad movie"
+            //     },
+            //     {
+            //         rating: 5,
+            //         content: "This is my new favorite film!!!"
+            //     }
+            // ]
         };
         this.handleChangeSelect = this.handleChangeSelect.bind(this);
         this.handleChangeInput = this.handleChangeInput.bind(this);
+        this.handleClick = this.handleClick.bind(this);
         // this.handleSubmit = this.handleSubmit.bind(this);
         // this.onHandleSubmit = this.onHandleSubmit(this);
     }
 
     handleChangeSelect(event) {
         this.setState({rating: event.target.value});
+        console.log(this.state.rating)
     }
 
     handleChangeInput(event) {
         this.setState({content: event.target.value});
+        console.log(this.state.content)
     }
     
     // handleSubmit(event) {
@@ -55,11 +58,13 @@ export default class ReviewForm extends React.Component {
     //     console.log(this.state.newReview);
     // }
     
-    // onHandleSubmit() {
-    //     let srating = Number(this.state.rating);
-    //     let scontent = this.state.content;
-    //     this.props.action({ rating: srating, content: scontent});
-    // }
+    handleClick(event) {
+        let srating = this.state.rating;
+        let scontent = this.state.content;
+        let newObject = {rating: Number(srating), content: scontent};
+        console.log(srating, scontent);
+        this.props.addReview(event, newObject);
+    }
 
     render() {
         
@@ -70,10 +75,9 @@ export default class ReviewForm extends React.Component {
                     Write a Review
                 </div>
                 <div className="card-body">
-                    <form onSubmit={this.props.onHandleSubmit}>
-                        <input name="content" type="text" placeholder="What did you think of this film?" className="form-control" onChange={this.handleChangeInput}></input>
+                        <input type="text" placeholder="What did you think of this film?" className="form-control" onChange={this.handleChangeInput}></input>
                         <h5>Rating ★:</h5>
-                        <select defaultValue="1" name="rating" className="form-control" onChange={this.handleChangeSelect}>
+                        <select defaultValue="1" className="form-control" onChange={this.handleChangeSelect}>
                             <option value="1">★☆☆☆☆</option>
                             <option value="2">★★☆☆☆</option>
                             <option value="3">★★★☆☆</option>
@@ -81,28 +85,8 @@ export default class ReviewForm extends React.Component {
                             <option value="5">★★★★★</option>
                         </select>
                         <br></br>
-                        {/* <div className="form-check form-check-inline">
-                            <input className="form-check-input" type="radio" id="one" name={this.props.movie} value="1"></input>
-                            <label className="form-check-label" htmlFor="one">1</label>
-
-                            <input className="form-check-input" type="radio" id="two" name={this.props.movie} value="2"></input>
-                            <label className="form-check-label" htmlFor="two">2</label>
-
-                            <input className="form-check-input" type="radio" id="three" name={this.props.movie} value="3"></input>
-                            <label className="form-check-label" htmlFor="three">3</label>
-
-                            <input className="form-check-input" type="radio" id="four" name={this.props.movie}value="4"></input>
-                            <label className="form-check-label" htmlFor="four">4</label>
-
-                            <input className="form-check-input" type="radio" id="five" name={this.props.movie} value="5"></input>
-                            <label className="form-check-label" htmlFor="five">5</label>
-                        </div> */}
-                            <button type="submit" value="Submit" className="btn btn-danger" id="submit-review" >Submit Your Review</button>
-                    </form>
+                        <button className="btn btn-danger" id="submit-review" onClick={this.handleClick} >Submit Your Review</button>
                 </div>
-                {/* <div className="container-fluid">
-                    <Reviewlist {...{reviews: this.state.newReview}} />
-                </div> */}
             </div>
         );
     }

@@ -1,28 +1,26 @@
 import React from 'react';
 import ReviewList from './review-list';
 import ReviewForm from './review-form';
+import Review from './review';
 import Stars from './stars';
+
+const reviews = [
+    {
+        rating: 1,
+        content: "This was a very bad movie"
+    },
+    {
+        rating: 5,
+        content: "This is my new favorite film!!!"
+    }
+];
 
 export default class Movie extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            rating: 0,
-            content: "",
-            reviewArray: []
-        };
-        this.doThis = this.doThis.bind(this);
-    }
-
-    doThis() {
-        this.setState({
-            count : this.state.count
-        });
-        console.log('count: ', this.state.count);
-    }
-
-    render() {
-        let reviews = [
+            ratingAvg: 0,
+            reviewArray: [    
             {
                 rating: 1,
                 content: "This was a very bad movie"
@@ -30,8 +28,35 @@ export default class Movie extends React.Component {
             {
                 rating: 5,
                 content: "This is my new favorite film!!!"
-            }
-        ];
+            }]
+        };
+        this.addReview = this.addReview.bind(this);
+    }
+
+    addReview(event, object) {
+        // let ratingsNum = 0;
+        // let updatedArray = [...this.state.reviewArray, object];
+        // this.setState({ reviewArray: updatedArray });
+        console.log(this.state.reviewArray);
+        // reviews.push(object);
+        // console.log(reviews); 
+        this.setState(state => {
+            state.reviewArray = [...state.reviewArray, object];
+            return state
+        });
+
+
+        event.preventDefault();
+    }
+
+    render() {
+        // const reviews = this.state
+        //     ? this.state.reviewArray.map((review, index) => <Review key={index} {...review} />)
+        //     :null;
+        let reviews;
+        if (this.state.reviewArray) {
+            reviews = this.state.reviewArray.map((review, index) => <Review key={index} {...review} />);
+        }
         
         let ratingsNum = 0;
         for (let x = 0; x < reviews.length; x++) {
@@ -47,7 +72,7 @@ export default class Movie extends React.Component {
                     <div className="col-md-4">
                         <div className="card bg-dark text-white mb-5">
                             <div className="card-header bg-danger">
-                                <span><Stars value={Math.floor(avg)} /></span>
+                                {/* <span><Stars value={Math.floor(avg)} /></span> */}
                                 <h5 className="card-title">{this.props.title}</h5>
                                   
                             </div>
@@ -58,9 +83,9 @@ export default class Movie extends React.Component {
                         </div>
                     </div>
                     <div className="col-md-8">
-                        <ReviewForm onHandleSubmit = { this.doThis } />
+                        <ReviewForm addReview={ this.addReview } />
                         <br></br>
-                        <ReviewList {...{reviews: reviews}} />
+                        <ReviewList reviews={reviews} />
                         <br></br>
                     </div>
                 </div>
